@@ -1,0 +1,86 @@
+---
+title: "Chiaramonte_Tutorial"
+author: "Chiaramonte"
+date: "2024-07-14"
+output: html_document
+---
+
+# The Vegan Package Featuring Ordination Graphics Ordihull, Ordiellipse, and Ordispider Functions
+
+> ##### Ordihull; Creates a CCA graph and partitions the data into communities. Each shape represents a different environmental parameter
+
+```{r vegan package}
+library(ggvegan)
+library(vegan)
+data(dune)
+data(dune.env)
+
+mod <- cca(dune ~ Management, dune.env)
+
+plot(mod, type="n", scaling = "symmetric")
+
+pl <- with(dune.env, ordihull(mod, Management,
+                              scaling = "symmetric", label = TRUE))
+
+summary(pl)
+
+```
+
+###### Defined arugments
+
+-   **mod**- Contains the analytic data for the dune data set.
+
+-   **cca**- Stands for constrained correspondence analysis. The analysis is used to derive the relationship between two sets of variables. The analysis produces WA and LC scores that can then be used to determine the association between the two variants.
+
+-   **dune**- Lichen data and site information found in the Vegan package. The data has 20 observations and 30 variables
+
+-   **dune.env** This data set is cleaning up the dune data to make analysis easier. A data frame of 20 observations on the following 5 variables: A1: a numeric vector of thickness of soil A1 horizon. Moisture: an ordered factor with levels: 1 \< 2 \< 4 \< 5.
+
+-   **management**- Data describing the land use of the sites. BF (Biological farming), HF (Hobby farming), NM (Nature Conservation Management), and SF (Standard Farming).
+
+-   **type=n-** Argument for the type of graph. The n states that no points will be displayed on the graph
+
+-   **scaling="symmetric"**- Scaling the data by variances of the data matrix with the option of symmetric. Other options would be to scale sites and species.
+
+    > Ordiellipse Function: Applies confidence ellipses around the ordihulls that were created in the above code. This feature highlights the grouping of communities
+
+```{r ordiellipse}
+plot(mod, type = "n")
+pl <- with(dune.env, ordihull(mod, Management,
+                              scaling = "symmetric", col = 1:4,
+                              draw="polygon", label =TRUE))
+with(dune.env, ordiellipse(mod, Management, scaling = "symmetric",
+                           kind = "ehull", col = 1:4, lwd=3))
+```
+
+###### Defined arguments
+
+-   **type=n-** Argument for the type of graph. The n states that no points will be displayed on the graph.
+
+-   **scaling="symmetric"**- Scaling the data by variances of the data matrix with the option of symmetric. Other options would be to scale sites and species.
+
+-   **label= True**- Using labels to define variables.
+
+-   **col**- Specifies the color of the hull or ellipse lines or their fills. If this argument is used with draw "polygon" and the argument border can give the ellipse a colored border.
+
+-   **draw=polygon**- Argument to dictate what shape is being used for the graph.
+
+> ##### Ordispider Function: connects the WA to the corrisponding LC scores of the data set. The shorter the line segment, the better the ordination of data. The scores are calculating when using a cca analysis. LC are linear combinations of the environmental data and the WC is the weighted average of the species data.
+
+```{r ordispider}
+
+plot(mod, dis=c("wa","lc"), type="p")
+ordispider(mod)
+```
+
+###### **Defined arguments:**
+
+-   **mod**- Contains the analytic data for the dune data set.
+
+-   **type=p-** Argument for the type of graph. The p states that points will be displayed on the graph
+
+-   ordispider (mod)- argument to plot the data using an ordispider graph
+
+-   dis=c - display the WC and LC
+
+##### 
