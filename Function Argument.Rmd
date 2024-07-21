@@ -1,0 +1,47 @@
+---
+title: "Chiaramonte_week 8"
+author: "Chiaramonte"
+date: "2024-07-18"
+output: html_document
+---
+
+Write a function for them in R that converts temperature from Celsius to Fahrenheit so that they can stop bothering you to do the conversion for them. Note that last week you converted F to C and this week is the opposite! 1A. In a code chunk, convert 22°C into Fahrenheit. Feel free to Google the formula. Also, note that you may want to be careful to use parentheses to make sure the order of operations is correct.
+
+### Using the argument function, writing a code that converts Celsius to Fahrenheit. 
+
+###### The code needs to start with x\*(9/5)+32.  In this line of code, the code is going to concert 22 degrees Celsius to Fahrenheit.
+
+```{r Q1a}
+22*(9/5)+32
+
+```
+
+###### The next step is to assign the value you are converting to an object.  Once that has been written, use the object name and insert the formula.
+
+```{r setup, Q 1b}
+C_temp<- 22
+C_temp*(9/5)+32
+
+ 
+```
+
+###### Now define the function and create a scripted formula. 
+
+```{r Q1c}
+temp_conv<- function(celsius){
+  
+  math<-celsius*(9/5)+32
+  return(math)
+  
+  
+}
+```
+
+###### Below you will find examples of how to convert between Celsius and Fahrenheit. 
+
+```{r Q1D}
+
+temp_conv(5)
+temp_conv(35)
+
+```
