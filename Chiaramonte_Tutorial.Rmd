@@ -1,5 +1,5 @@
 ---
-title: "Chiaramonte_Tutorial"
+title: "Chiaramonte_Vegan Tutorial"
 author: "Chiaramonte"
 date: "2024-07-14"
 output: html_document
