@@ -1,0 +1,24 @@
+---
+title: "Custom Function read me"
+author: "Chiaramonte"
+date: "2024-07-21"
+output: html_document
+---
+
+### {r setup, function argument}
+
+Introduction
+
+#### Using a Custom Argument for a Math Equations
+
+##### multiply \<- function(arg1, arg2){
+
+\# Multiply the arguments together result \<- arg1 \* arg2
+
+\# Return that to the user return(result)
+
+} \# End function operations
+
+### This code chunk can now be used for the multiplication function!
+
+multiply(arg1 = 10, arg2 = 5)
